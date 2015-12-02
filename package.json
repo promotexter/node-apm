@@ -1,0 +1,23 @@
+{
+  "name": "node-apm",
+  "version": "1.0.0",
+  "description": "Nodejs application metric monitoring tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/promotexter/node-apm.git"
+  },
+  "author": "Ferdinand Yanto III",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/promotexter/node-apm/issues"
+  },
+  "homepage": "https://github.com/promotexter/node-apm",
+  "dependencies": {
+    "measured": "^1.0.2",
+    "rabbit.js": "^0.4.4"
+  }
+}
