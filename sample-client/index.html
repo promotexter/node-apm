@@ -1,0 +1,57 @@
+<html ng-app="myApp">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<script src="bower_components/sockjs/sockjs.min.js"></script>
+<script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
+<script src="bower_components/ng-stomp/ng-stomp.min.js"></script>
+
+
+
+<!-- BOOTSTRAP -->
+<!-- Latest compiled and minified CSS -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+
+<!-- Optional theme -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
+
+
+<body>
+
+<div ng-controller="ctrl as c">
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-6">
+				<h2>log</h2>
+				<p><textarea id="log" cols="80" rows="10"></textarea></p>
+			</div>
+
+			<div class="col-lg-6">
+				<h2>Messages</h2>
+				<table>
+					<tr>
+						<th>Source</th>
+						<th>Type</th>
+						<th>Metrics</th>
+					</tr>
+					<tr ng-repeat="d in c.metrics">
+						<td>{{ d.source }}</td>
+						<td>{{ d.type }} </td>
+						<td>{{ d.metrics }}</td>
+					</tr>
+				</table>
+
+				{{ metrics }}
+				<!-- {{ message }} -->
+				<!-- {{ payload }} -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="app.js"></script>
+<script src="ctrl.js"></script>
+
+</body>
+</html>

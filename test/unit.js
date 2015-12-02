@@ -9,5 +9,9 @@ apm.attach('rabbit',{
 					});
 // start tracking
 setInterval(function(){
-	apm.meter('test').mark();
+	apm.meter('req/sec').mark();
 },1000);
+
+setInterval(function(){
+	apm.meter('http/sec').mark();
+},500);
