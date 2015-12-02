@@ -9,8 +9,9 @@ An nodejs application monitoring tool that tracks metrics and reports it to a ce
 ## To use:
 
     var apm = require('node-apm');
-
-	http.createServer(function(req, res) {
+    apm.attach('console');
+    
+    http.createServer(function(req, res) {
       apm.meter('requestsPerSecond').mark();
       res.end('Thanks');
     }).listen(3000);
@@ -21,11 +22,12 @@ An nodejs application monitoring tool that tracks metrics and reports it to a ce
 ## To use with Rabbit Endpoint:
 
 	var apm = require('node-apm');
-	apm.attachEndpoint('rabbitmq', 
+	apm.attach('rabbit', 
                           { 
                              host : 'aqpm://localhost',  
                              [channel : 'node-apm',]
-                             [reportFrequency : 990,]
+                             [type : 'type-app',]
+                             [source : 'source-localhost',]
                           });
 
 	http.createServer(function(req, res) {
