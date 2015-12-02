@@ -1,13 +1,15 @@
 var util      	= require('util');
 var Measured 	= require('measured');
 
-var Rabbit      = require('./lib/rabbit');
-
 var APM = {};
 
 var endpoints = {};
 
+/* Rabbit endpoint */
+var Rabbit      = require('./lib/rabbit');
 var rabbit = {};
+
+
 
 // let's create the collection from node-measured 
 APM = Measured.createCollection();
@@ -52,7 +54,7 @@ setInterval(function(){
 	// write to rabbit
 	if(endpoints['rabbit'])
 		rabbit.log(APM.toJSON());
-	
+
 },1000);
 
 module.exports = APM;
