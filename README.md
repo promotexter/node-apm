@@ -28,6 +28,7 @@ An nodejs application monitoring tool that tracks metrics and reports it to a ce
                              [channel : 'node-apm',]
                              [type : 'type-app',]
                              [source : 'source-localhost',]
+                             [expiration : 0,]
                           });
 
 	http.createServer(function(req, res) {
