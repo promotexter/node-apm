@@ -28,7 +28,7 @@ APM.attach = function(type, config)
 			break;
 
 		case 'rabbit' : 
-			console.log(config);
+			// console.log(config);
 			rabbit = new Rabbit(config);
 
 			rabbit.init(function(){
