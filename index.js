@@ -49,7 +49,7 @@ setInterval(function(){
 
 	// write to console
 	if(endpoints['console'])
-		console.log(APM.toJSON());
+		console.log("[node-apm]\t", APM.toJSON());
 
 	// write to rabbit
 	if(endpoints['rabbit'])
