@@ -60,6 +60,8 @@ app.controller("ctrl", function($scope, $stomp) {
 	            $scope.payload = payload;
 
 
+	            console.log(payload);
+
 	            // $scope.$apply(function() {
 	            	$scope.cookData(payload);
 	            // });

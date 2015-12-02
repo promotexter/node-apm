@@ -1,0 +1,19 @@
+{
+  "name": "sample-client",
+  "version": "0.0.0",
+  "homepage": "https://github.com/promotexter/node-apm",
+  "authors": [
+    "Ardee Yanto <ardee@promotexter.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-stomp": "~0.0.2"
+  }
+}
