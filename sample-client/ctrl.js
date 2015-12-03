@@ -21,29 +21,20 @@ app.controller("ctrl", function($scope, $stomp) {
 		*/
 		// console.log(data);
 
-		
-			// is the source there?
-			if(!$scope.metrics[data.source])
-				$scope.metrics[data.source] = {};
+			var key = data.source + "-" + data.type;
 
-			// is the type there
-			if(!$scope.metrics[data.source][data.type])
-				$scope.metrics[data.source][data.type] = {};
+			// // is the source there?
+			if(!$scope.metrics[key])
+				$scope.metrics[key] = {};
 
-			if(!$scope.metrics[data.source][data.type].metrics)
-				$scope.metrics[data.source][data.type].metrics = {};		
+			$scope.metrics[key].key = key;
+			$scope.metrics[key].source = data.source;
+			$scope.metrics[key].type = data.type;
+			$scope.metrics[key].data = data.body;
 
-			angular.forEach(data.body, function(v,k){
-				// $scope.$apply(function(){		
-					$scope.metrics[data.source][data.type].metrics[k] = v.count;			
-				
-				// });		
-			})
-
+			// console.log($scope.metrics);
 			$scope.$apply();
-		
-
-
+	
 	}
 
     $stomp.setDebug(function (args) {

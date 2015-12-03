@@ -169,14 +169,19 @@ APM.probe = function() {
       // });
       // checkIssues(APM._var);
 
+      var cookedData = cookData(APM._var);
       
-		// write to console
-		if(APM.debugMode)
-			console.log("[node-apm]\n", cookData(APM._var));
+  		// write to console
+  		if(APM.debugMode)
+  			console.log("[node-apm]\n", cookedData);
 
-		// write to rabbit
-		if(endpoints['rabbit'])
-			rabbit.log( cookData(APM._var) );
+  		// write to rabbit
+  		if(endpoints['rabbit'])
+      {
+        // console.log("[node-apm-rabbit]\n", cookedData);
+  			rabbit.log( cookedData);
+      }
+
     }, 990);
   }
 

@@ -9,10 +9,10 @@
 
 <!-- BOOTSTRAP -->
 <!-- Latest compiled and minified CSS -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <!-- Optional theme -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
 
 <body>
@@ -24,25 +24,35 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<h2>log</h2>
-				<p><textarea id="log" cols="80" rows="10"></textarea></p>
+				<p><textarea id="log" cols="80" rows="50"></textarea></p>
 			</div>
 
 			<div class="col-lg-6">
 				<h2>Messages</h2>
-				<table>
+				<table class="table" width="100%">
 					<tr>
 						<th>Source</th>
-						<th>Type</th>
 						<th>Metrics</th>
 					</tr>
-					<tr ng-repeat="d in metrics">
-						<td>{{ d.source }}</td>
-						<td>{{ d.type }} </td>
-						<td>{{ d.metrics }}</td>
+					<tr ng-repeat="(kk, vv) in metrics">
+						<td width="30%">{{ kk }}</td>
+						<td width="">
+							
+							<table class="table" width="100%" ng-repeat='(kkk, vvv ) in vv.data'>
+								<tr ng-repeat='(kkkk, vvvv ) in vvv'> 
+									<td width="25%">{{ kkk }}</td>
+									<td width="25%">{{ kkkk }}</td>
+									<td> {{ vvvv.value | number : 2}}</td>
+								</tr>
+							</table>
+							
+						</td>
+						<!-- <td>{{ d.type }} </td> -->
+						<!-- <td>{{ d.metrics }}</td> -->
 					</tr>
 				</table>
 
-				{{ metrics }}
+				<!-- {{ metrics }} -->
 				<!-- {{ message }} -->
 				<!-- {{ payload }} -->
 			</div>
