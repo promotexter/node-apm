@@ -28,7 +28,7 @@ An nodejs application monitoring tool that tracks metrics and reports it to a ce
 ## To use with Rabbit Endpoint:
 
 	var apm = require('node-apm');
-	apm.attach('rabbit', 
+	apm.attachTransport('rabbit', 
                           { 
                              host : 'aqpm://localhost',  
                              [channel : 'node-apm',]
