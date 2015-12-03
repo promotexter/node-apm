@@ -1,9 +1,28 @@
 app.controller("ctrl", function($scope, $stomp) {
     
     $scope.metrics = {};
+    $scope.config = {
+    	rabbit_server :'http://127.0.0.1:15674/stomp',
+    	rabbit_server_options : {
+    		 login: 'guest', 
+    		 passcode: 'guest'
+    	},
+    	channel : '/exchange/node-apm',
+    }
 
     $scope.message = "TEST";
 
+    $scope.updateConfig = function(data)
+    {
+    	console.log("updateConfig");
+
+    	$scope.config.rabbit_server = data.rabbit_server;
+    	$scope.config.channel = data.channel;
+
+    	// stopStomp(function(){
+    		runStomp();
+    	// })
+    }
 
     $scope.cookData = function(data)
 	{
@@ -41,43 +60,62 @@ app.controller("ctrl", function($scope, $stomp) {
 	    document.getElementById('log').value += args + '\n';
 	});
 
-	$stomp
-	    .connect('http://127.0.0.1:15674/stomp', { login: 'guest', passcode: 'guest'})
-	 
-	    // frame = CONNECTED headers 
-	    .then(function (frame) {
-	 
-	        var subscription = $stomp.subscribe('/exchange/node-apm', function (payload, headers, res) {
-	            $scope.payload = payload;
+	runStomp();
 
+    
 
-	            console.log(payload);
+    function runStomp()
+    {
+    	$scope.metrics = {};
+    	
+    	console.log("RUNNING STOMP");
+    	// $stomp.disconnect(function () {
+	    	$stomp
+			    .connect($scope.config.rabbit_server, $scope.config.rabbit_server_options)
+			 
+			    // frame = CONNECTED headers 
+			    .then(function (frame) {
+			 		
+			 		console.log("RUNNING STOMP [OK]");
 
-	            // $scope.$apply(function() {
-	            	$scope.cookData(payload);
-	            // });
-	            // console.log(payload);
-	            // document.getElementById('messages').value += payload + '\n';
-	        }, {
-	            "headers": "are awesome"
-	        });
-	 
-	        // Unsubscribe 
-	        // subscription.unsubscribe();
-	 
-	        // Send message 
-	        // $stomp.send('/dest', {
-	        //     message: 'body'
-	        // }, {
-	        //     priority: 9,
-	        //     custom: 42 //Custom Headers 
-	        // });
-	 
-	        // Disconnect 
-	        // $stomp.disconnect(function () {
-	 
-	        // });
-	    });
+			        var subscription = $stomp.subscribe($scope.config.channel, function (payload, headers, res) {
+			            $scope.payload = payload;
+		            	$scope.cookData(payload);
+			            
+			        }, {
+			            "headers": "are awesome"
+			        });
+			 
+			        // Unsubscribe 
+			        // subscription.unsubscribe();
+			 
+			        // Send message 
+			        // $stomp.send('/dest', {
+			        //     message: 'body'
+			        // }, {
+			        //     priority: 9,
+			        //     custom: 42 //Custom Headers 
+			        // });
+			 
+			        // Disconnect 
+			       
+		    });
+		// });
+		
+    }
+
+   //  function stopStomp(cb)
+   //  {
+   //  	console.log("stopping STOMP");
+
+   //  	 $stomp.disconnect(function () {
+
+   //  	 	console.log("KILLED STOMP");
+			// cb(); 
+		 // });
+   //  }	
+
+	
 
 
 	

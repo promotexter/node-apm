@@ -22,14 +22,30 @@
 	<div class="container">
 
 		<div class="row">
+			<div class="col-lg-12">
+				<form class="form-inline">
+					<div class="form-group">
+						<label>Rabbit Server</label>
+						<input type="form-control" ng-model="config.rabbit_server">
+					</div>
+					<div class="form-group">
+						<label>Channel</label>
+						<input type="form-control" ng-model="config.channel">
+					</div>
+					<button class="btn btn-primary" ng-click="updateConfig(config);">Submit</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="row">
 			<div class="col-lg-6">
 				<h2>log</h2>
-				<p><textarea id="log" cols="80" rows="50"></textarea></p>
+				<p><textarea id="log" cols="80" rows="20"></textarea></p>
 			</div>
 
 			<div class="col-lg-6">
 				<h2>Messages</h2>
-				<table class="table" width="100%">
+				<table class="table table-condensed" width="100%">
 					<tr>
 						<th>Source</th>
 						<th>Metrics</th>
@@ -38,11 +54,11 @@
 						<td width="30%">{{ kk }}</td>
 						<td width="">
 							
-							<table class="table" width="100%" ng-repeat='(kkk, vvv ) in vv.data'>
+							<table class="table table-condensed" width="100%" ng-repeat='(kkk, vvv ) in vv.data'>
 								<tr ng-repeat='(kkkk, vvvv ) in vvv'> 
 									<td width="25%">{{ kkk }}</td>
-									<td width="25%">{{ kkkk }}</td>
-									<td> {{ vvvv.value | number : 2}}</td>
+									<td width="50%">{{ kkkk }}</td>
+									<td > <p class="pull-right">{{ vvvv.value | number : 2}}</p></td>
 								</tr>
 							</table>
 							
