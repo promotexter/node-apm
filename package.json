@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/promotexter/node-apm",
   "dependencies": {
+    "lodash": "^3.10.1",
     "measured": "^1.0.2",
     "rabbit.js": "^0.4.4"
   }

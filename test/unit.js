@@ -1,17 +1,31 @@
 var apm = require('../index.js');
 
-apm.attach('console');
-apm.attach('rabbit',{ 
+apm.debugMode = true;
+apm.attachTransport('rabbit',{ 
 						channel: 'node-apm', 
 						host:'amqp://localhost', 
 						source: 'localhost', 
 						type:'test-app'
 					});
-// start tracking
-setInterval(function(){
-	apm.meter('req/sec').mark();
-},1000);
+
+
+
+var probe = apm.probe();
+
+var meter = probe.meter({  name      : 'req/sec' });
+var counter = probe.counter({  name      : 'total requests' });
+
 
 setInterval(function(){
-	apm.meter('http/sec').mark();
+	meter.mark();
+	counter.inc();
 },500);
+
+
+// setInterval(function(){
+// 	apm.counter('http/sec').inc();
+// },500);
+
+// setInterval(function(){
+// 	apm.gauge('gauge');
+// },500);

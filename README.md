@@ -9,10 +9,16 @@ An nodejs application monitoring tool that tracks metrics and reports it to a ce
 ## To use:
 
     var apm = require('node-apm');
-    apm.attach('console');
+
+    // display data in console (default:false)
+    apm.debugMode = true;
     
+
+    var probe = apm.probe();
+    var meter = probe.meter({  name      : 'req/sec' });
+
     http.createServer(function(req, res) {
-      apm.meter('requestsPerSecond').mark();
+      meter.mark();
       res.end('Thanks');
     }).listen(3000);
 
@@ -31,10 +37,14 @@ An nodejs application monitoring tool that tracks metrics and reports it to a ce
                              [expiration : 0,]
                           });
 
+  var probe = apm.probe();
+  var counter = probe.counter({  name      : 'total requests' });
+
 	http.createServer(function(req, res) {
-      apm.meter('requestsPerSecond').mark();
+      counter.inc();
       res.end('Thanks');
     }).listen(3000);
 
 
     
+### to do document other methods
