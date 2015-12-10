@@ -1,6 +1,6 @@
 var apm = require('../index.js');
 
-apm.debugMode = true;
+// apm.debugMode = true;
 apm.attachTransport('rabbit',{ 
 						channel: 'node-apm', 
 						host:'amqp://localhost', 
@@ -19,6 +19,7 @@ var counter = probe.counter({  name      : 'total requests' });
 setInterval(function(){
 	meter.mark();
 	counter.inc();
+	// console.log(meter.toJSON());
 },500);
 
 
